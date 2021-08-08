@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import { getAllTask, getOneTask, addTask, deleteTask, updateTask } from '../services/tasks';
+
+import { getTasksAction } from '../redux/actions/Actions';
 
 const Tasks = () => {
 
-    const [tasks, setTaks] = useState([]);
+    const tasks = useSelector((state) => state.tasks); // 'tasks' viene de reducers/index.js
+
+    const dispatch = useDispatch();
 
     const [task, setTask] = useState({
         "title": "",
@@ -112,7 +118,7 @@ const Tasks = () => {
         getAllTask()
             .then(data => {
 
-                setTaks(data);
+                dispatch(getTasksAction(data));
 
             })
             .catch(err => console.error(err))
