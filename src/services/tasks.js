@@ -1,10 +1,10 @@
 
-export const getAllTask = () => {
+export const getAllTasks = (userId) => {
 
-    return fetch('http://localhost:3001/api/task/tasks')
+    return fetch(`http://localhost:3001/api/task/all/userId/${userId}`)
         .then(res => res.json())
 
-} 
+}
 
 export const addTask = (state) => {
 

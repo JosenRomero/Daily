@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useUserData } from '../hooks/useUserData';
 
-import { getAllTask, getOneTask, addTask, deleteTask, updateTask } from '../services/tasks';
-
-import { getTasksAction } from '../redux/actions/Actions';
+import { getOneTask, addTask, deleteTask, updateTask } from '../services/tasks';
 
 const Tasks = () => {
 
-    const tasks = useSelector((state) => state.tasks); // 'tasks' viene de reducers/index.js
-
-    const dispatch = useDispatch();
+    const { user, tasks, fetchTasks } = useUserData();
 
     const [task, setTask] = useState({
         "title": "",
         "description": "",
         "_id": ""
     });
-
-    // De forma similar a componentDidMount y componentDidUpdate
-    useEffect(() => {  
-        
-        fetchTasks();
-
-    }, []);
 
     const handleSubmit = (event) => {
 
@@ -50,7 +39,7 @@ const Tasks = () => {
             }else { // _id vacio
 
                 const newTask = {
-                    userId: 'joseromero',
+                    userId: user.userId,
                     title:  task.title,
                     description: task.description,
                     publicTask: true,
@@ -112,19 +101,6 @@ const Tasks = () => {
         
     }
 
-    // pide las tareas al servidor
-    const fetchTasks = () => {
-
-        getAllTask()
-            .then(data => {
-
-                dispatch(getTasksAction(data));
-
-            })
-            .catch(err => console.error(err))
-
-    }
-
     // captura lo que se escribe en los input
     const handleChange = (event) => {
 
@@ -139,7 +115,7 @@ const Tasks = () => {
 
     return <div className="container">
 
-        <h1>Welcome!</h1>
+        <h1>Welcome! {user.username}</h1>
 
         { /* Modal */ }
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
