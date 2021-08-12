@@ -4,7 +4,7 @@ import { useUserData } from '../hooks/useUserData';
 
 import { getOneTask } from '../services/tasks';
 
-import { addTaskAction, deleteTaskAction, updateTaskAction } from '../redux/actions/Actions';
+import { addTaskAction, deleteTaskAction, updateTaskAction, deleteAllTasksAction } from '../redux/actions/Actions';
 
 const Tasks = () => {
 
@@ -30,7 +30,7 @@ const Tasks = () => {
                     title: task.title, 
                     description: task.description, 
                     publicTask: true 
-                }))
+                }));
 
                 setTask({
                     "title": "", 
@@ -46,7 +46,7 @@ const Tasks = () => {
                     description: task.description,
                     publicTask: true,
                     likers: ["jose"]
-                }))
+                }));
 
                 setTask({
                     "title": "", 
@@ -65,7 +65,7 @@ const Tasks = () => {
 
     const removeTask = (id) => {
 
-        dispatch(deleteTaskAction(id))
+        dispatch(deleteTaskAction(id));
 
     }
 
@@ -87,6 +87,12 @@ const Tasks = () => {
             })
             .catch(err => console.error(err));
         
+    }
+
+    const removeAllTasks = () => {
+
+        dispatch(deleteAllTasksAction(user.userId));
+
     }
 
     // captura lo que se escribe en los input
@@ -147,6 +153,10 @@ const Tasks = () => {
                 <button type="button" className="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Create Task
                 </button> 
+
+                <button onClick={ () => removeAllTasks() } type="button" className="btn btn-danger m-3"> 
+                    Delete all tasks
+                </button>
 
             </div>
 

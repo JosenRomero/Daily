@@ -22,6 +22,8 @@ const TasksReducer = (state = [], action) => {
                     return task;
                 }
             });
+        case types.DELETE_ALL_TASKS:
+            return []
         default:
             return state;
     }

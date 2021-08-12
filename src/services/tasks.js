@@ -53,3 +53,16 @@ export const getOneTask = (id) => {
         .then(res => res.json())
 
 }
+
+export const deleteAllTasks = (userId) => {
+
+    return fetch(`http://localhost:3001/api/task/all/userId/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": 'application/json'
+        }
+    })
+        .then(res => res.json())
+
+}

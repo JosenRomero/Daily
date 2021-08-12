@@ -1,6 +1,6 @@
 import * as types from './types';
 
-import { getAllTasks, addTask, deleteTask, updateTask } from '../../services/tasks';
+import { getAllTasks, addTask, deleteTask, updateTask, deleteAllTasks } from '../../services/tasks';
 
 
 export const initTasksAction = (userId) => {
@@ -68,4 +68,19 @@ export const updateTaskAction = ({ _id, title, description, publicTask }) => {
 
     }
     
+}
+
+export const deleteAllTasksAction = (userId) => {
+
+    return async (dispatch) => {
+
+        await deleteAllTasks(userId);
+
+        dispatch({
+            type: types.DELETE_ALL_TASKS,
+            payload: []
+        })
+
+    }
+
 }
