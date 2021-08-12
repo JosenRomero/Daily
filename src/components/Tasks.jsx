@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
 import { useUserData } from '../hooks/useUserData';
 
-import { getOneTask, addTask, deleteTask, updateTask } from '../services/tasks';
+import { getOneTask } from '../services/tasks';
+
+import { addTaskAction, deleteTaskAction, updateTaskAction } from '../redux/actions/Actions';
 
 const Tasks = () => {
 
-    const { user, tasks, fetchTasks } = useUserData();
+    const { user, tasks } = useUserData();
+
+    const dispatch = useDispatch();
 
     const [task, setTask] = useState({
         "title": "",
@@ -21,45 +25,34 @@ const Tasks = () => {
             // comprobamos si el estado de la aplicación tiene lleno o vacio el _id, ver editTak
             if(task._id) { // _id lleno 
 
-                // petición al servidor para actualizar una tarea
-                updateTask({ _id: task._id, title: task.title, description: task.description, publicTask: true })
-                    .then(data => {
+                dispatch(updateTaskAction({
+                    _id: task._id, 
+                    title: task.title, 
+                    description: task.description, 
+                    publicTask: true 
+                }))
 
-                        setTask({
-                            "title": "", 
-                            "description": "", 
-                            "_id": ""
-                        });
-
-                        fetchTasks();
-
-                    })
-                    .catch(err => console.error(err));
+                setTask({
+                    "title": "", 
+                    "description": "", 
+                    "_id": ""
+                });
 
             }else { // _id vacio
 
-                const newTask = {
+                dispatch(addTaskAction({
                     userId: user.userId,
                     title:  task.title,
                     description: task.description,
                     publicTask: true,
                     likers: ["jose"]
-                }
+                }))
 
-                // petición al servidor para agregar una tarea
-                addTask(newTask)
-                    .then(data => {
-
-                        setTask({
-                            "title": "", 
-                            "description": ""
-                        });
-
-                        fetchTasks();
-
-                    })
-                    .catch(err => console.error(err));
-
+                setTask({
+                    "title": "", 
+                    "description": ""
+                });
+                
             }
 
         } else {
@@ -72,12 +65,7 @@ const Tasks = () => {
 
     const removeTask = (id) => {
 
-        // petición al servidor para eliminar una tarea
-        deleteTask(id)
-            .then(data => {
-                fetchTasks();
-            })
-            .catch(err => console.error(err));
+        dispatch(deleteTaskAction(id))
 
     }
 

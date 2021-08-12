@@ -2,8 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getUser } from '../services/user';
-import { getAllTasks } from '../services/tasks';
-import { getTasksAction } from '../redux/actions/Actions';
+import { initTasksAction } from '../redux/actions/Actions';
 
 export const useUserData = () => {
 
@@ -20,13 +19,8 @@ export const useUserData = () => {
     const fetchTasks = useCallback(() => {
 
         if(user.userId) {
-            getAllTasks(user.userId)
-                .then(data => {
 
-                    dispatch(getTasksAction(data));
-
-                })
-                .catch(err => console.error(err))
+            dispatch(initTasksAction(user.userId));
 
         }
             
@@ -53,8 +47,7 @@ export const useUserData = () => {
 
     return {
         user,
-        tasks,
-        fetchTasks
+        tasks
     }
 
 }
