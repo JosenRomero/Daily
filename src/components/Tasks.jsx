@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useUserData } from '../hooks/useUserData';
+// import { useUserData } from '../hooks/useUserData';
 import { useCurrentTask } from '../hooks/useCurrentTask';
+import { useUser } from '../hooks/useUser';
+import { useTasks } from '../hooks/useTasks';
 
 import { getOneTask } from '../services/tasks';
 
@@ -14,7 +16,11 @@ import {
 
 const Tasks = () => {
 
-    const { user, tasks } = useUserData();
+    const { user } = useUser();
+
+    const { tasks } = useTasks();
+
+    // const { user, tasks } = useUserData();
 
     const { task, currentTask, clearCurrentTask } = useCurrentTask();
 

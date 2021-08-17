@@ -23,11 +23,6 @@ export const getTasksAction = () => ({
     payload: []
 });
 
-export const addingTaskAction = (newValue) => ({
-    type: types.ADDING_TASK,
-    payload: newValue
-});
-
 export const addTaskAction = (task) => {
 
     return async (dispatch) => {
@@ -89,3 +84,13 @@ export const deleteAllTasksAction = (userId) => {
     }
 
 }
+
+export const addingTaskAction = (newValue) => ({
+    type: types.ADDING_TASK,
+    payload: newValue
+});
+
+export const addingUserAction = (user) => ({
+    type: types.ADDING_USER,
+    payload: user
+});
