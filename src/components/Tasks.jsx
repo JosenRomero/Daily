@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useUserData } from '../hooks/useUserData';
+import { useCurrentTask } from '../hooks/useCurrentTask';
 
 import { getOneTask } from '../services/tasks';
 
-import { addTaskAction, deleteTaskAction, updateTaskAction, deleteAllTasksAction } from '../redux/actions/Actions';
+import { 
+    addTaskAction, 
+    deleteTaskAction, 
+    updateTaskAction, 
+    deleteAllTasksAction 
+} from '../redux/actions/Actions';
 
 const Tasks = () => {
 
     const { user, tasks } = useUserData();
 
-    const dispatch = useDispatch();
+    const { task, currentTask, clearCurrentTask } = useCurrentTask();
 
-    const [task, setTask] = useState({
-        "title": "",
-        "description": "",
-        "_id": ""
-    });
+    const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
 
@@ -32,11 +34,7 @@ const Tasks = () => {
                     publicTask: true 
                 }));
 
-                setTask({
-                    "title": "", 
-                    "description": "", 
-                    "_id": ""
-                });
+                clearCurrentTask();
 
             }else { // _id vacio
 
@@ -48,10 +46,7 @@ const Tasks = () => {
                     likers: ["jose"]
                 }));
 
-                setTask({
-                    "title": "", 
-                    "description": ""
-                });
+                clearCurrentTask();
                 
             }
 
@@ -78,12 +73,12 @@ const Tasks = () => {
 
                 // solo en este caso, cuando se está editando una tarea, el estado de la aplicación tendrá lleno el _id
 
-                setTask({
-                    "title": data.title,
-                    "description": data.description,
-                    "_id": data._id
+                currentTask({
+                    title: data.title,
+                    description: data.description,
+                    _id: data._id
                 })
-
+                
             })
             .catch(err => console.error(err));
         
@@ -100,7 +95,7 @@ const Tasks = () => {
 
         const { name, value } = event.target;
 
-        setTask({
+        currentTask({
             ...task,
             [name]: value
         });
@@ -126,11 +121,11 @@ const Tasks = () => {
 
                             <div className="mb-3">
                                 <label htmlFor="formControlInput1" className="form-label">Task title</label>
-                                <input type="text" name="title" onChange={handleChange} value={task.title} id="formControlInput1" className="form-control"></input>
+                                <input type="text" name="title" onChange={handleChange} value={task.title || ""} id="formControlInput1" className="form-control"></input>
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="formControlTextarea1" className="form-label">Task Description</label>
-                                <textarea name="description" onChange={handleChange} className="form-control" value={task.description} id="formControlTextarea1" rows="3"></textarea>
+                                <textarea name="description" onChange={handleChange} className="form-control" value={task.description || ""} id="formControlTextarea1" rows="3"></textarea>
                             </div>
                                     
                         </div>
