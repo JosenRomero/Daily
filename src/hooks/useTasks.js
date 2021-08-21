@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { initTasksAction } from '../redux/actions/Actions';
 
+import { deleteAllTasksAction } from '../redux/actions/Actions';
+
 export const useTasks = () => {
 
     const user = useSelector((state) => state.user); // 'user' viene de reducers/index.js
@@ -19,8 +21,15 @@ export const useTasks = () => {
 
     }, [dispatch, user.userId]);
 
+    const removeAllTasks = () => {
+
+        dispatch(deleteAllTasksAction(user.userId));
+
+    }
+
     return {
-        tasks
+        tasks,
+        removeAllTasks
     }
 
 }

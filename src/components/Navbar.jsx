@@ -1,7 +1,13 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
+
+import NavbarForUser from './NavbarForUser';
+
 const Navbar = () => {
+
+    const user = useSelector((state) => state.user);
 
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -9,7 +15,7 @@ const Navbar = () => {
 
                 <Link to="/" className="navbar-brand">Daily</Link>
 
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler m-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
@@ -20,9 +26,10 @@ const Navbar = () => {
                             <Link to="/" className="nav-link">Home</Link>
                         </li>
 
-                        <li className="nav-item active">
-                            <Link to="/tasks" className="nav-link">Tasks</Link>
-                        </li>
+                        {
+                            user.username && <NavbarForUser username={user.username} />
+                                
+                        }
 
                     </ul>
                 </div>
