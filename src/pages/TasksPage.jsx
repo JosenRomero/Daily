@@ -4,7 +4,7 @@ import Modal from '../components/Modal';
 import SectionMain from '../components/SectionMain';
 import SectionLeft from '../components/SectionLeft';
 
-const Tasks = () => {
+const TasksPage = () => {
 
     return <div className="bg-light">
 
@@ -25,5 +25,5 @@ const Tasks = () => {
     
 }
 
-export default Tasks;
+export default TasksPage;
 

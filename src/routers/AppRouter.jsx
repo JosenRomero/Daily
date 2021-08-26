@@ -8,6 +8,7 @@ import TasksPage from '../pages/TasksPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 const AppRouter = () => {
 
@@ -18,7 +19,7 @@ const AppRouter = () => {
 
                     <PrivateRoute exact path="/" component={HomePage} />
                     <PrivateRoute exact path="/tasks" component={TasksPage} />
-                    <Route exact path="/signin" component={SignInPage} />
+                    <PublicRoute exact path="/signin" component={SignInPage} />
 
                     <Route path="*" component={NotFoundPage} />
                     

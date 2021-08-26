@@ -1,0 +1,10 @@
+#cardRotate {
+    animation: rotate 4s infinite;
+    width: 80%;
+}
+
+@keyframes rotate {
+    50% {
+        transform: rotate(15deg);
+    }
+  }
