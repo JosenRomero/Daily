@@ -16,7 +16,7 @@ const NavbarForUser = (props) => {
         </li>  
 
         <li className="nav-item dropdown">
-            <span to="/profile" className="nav-link dropdown-toggle" id="dropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span className="nav-link dropdown-toggle" id="dropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 { props.username }
                
             </span>

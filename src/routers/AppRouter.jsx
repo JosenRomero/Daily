@@ -3,18 +3,22 @@ import { BrowserRouter as Router, Route, Switch }  from 'react-router-dom';
 import Layout from '../components/layouts/Layout';
 
 import HomePage from '../pages/HomePage';
+import SignInPage from '../pages/SignInPage';
 import TasksPage from '../pages/TasksPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
-function AppRouter() {
+import PrivateRoute from './PrivateRoute';
+
+const AppRouter = () => {
 
     return (
         <Router>
             <Layout>
                 <Switch>
 
-                    <Route exact path="/" component={HomePage} />
-                    <Route path="/tasks" component={TasksPage} />
+                    <PrivateRoute exact path="/" component={HomePage} />
+                    <PrivateRoute exact path="/tasks" component={TasksPage} />
+                    <Route exact path="/signin" component={SignInPage} />
 
                     <Route path="*" component={NotFoundPage} />
                     

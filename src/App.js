@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import AppRouter from './routers/AppRouter';
 
-function App() {
+const App = () => {
 
     return (
         <Provider store={store}> 
