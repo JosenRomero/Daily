@@ -8,6 +8,8 @@ import { getOneTask } from '../services/tasks';
 
 import { deleteTaskAction } from '../redux/actions/Actions';
 
+import { setErrorAction } from '../redux/actions/errorActions';
+
 const SectionMain = () => {
 
     const { tasks } = useTasks();
@@ -22,23 +24,26 @@ const SectionMain = () => {
 
     }
 
-    const editTask = (id) => {
+    const editTask = async (id) => {
 
         // petición al servidor para obtener una tarea.
         // en el method handleSubmit se actualiza está tarea
-        getOneTask(id)
-            .then(data => {
 
-                // solo en este caso, cuando se está editando una tarea, el estado de la aplicación tendrá lleno el _id
+        const { oneTask, msgError } = await getOneTask(id);
 
-                currentTask({
-                    title: data.title,
-                    description: data.description,
-                    _id: data._id
-                })
-                
+        if(!msgError) {
+
+            // solo en este caso, cuando se está editando una tarea, el estado de la aplicación tendrá lleno el _id
+            
+            currentTask({
+                title: oneTask.title,
+                description: oneTask.description,
+                _id: oneTask._id
             })
-            .catch(err => console.error(err));
+
+        }else {
+            dispatch(setErrorAction(msgError))
+        }     
         
     }
 
