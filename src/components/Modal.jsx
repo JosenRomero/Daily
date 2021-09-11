@@ -17,8 +17,8 @@ const Modal = () => {
 
         if(task.title && task.description) {
             
-            // comprobamos si el estado de la aplicación tiene lleno o vacio el _id, ver editTak
-            if(task._id) { // _id lleno 
+            // In the editTask method from SectionMain.jsx, change the value of tasks._id
+            if(task._id) { // updateTask
 
                 dispatch(updateTaskAction({
                     _id: task._id, 
@@ -29,7 +29,7 @@ const Modal = () => {
 
                 clearCurrentTask();
 
-            }else { // _id vacio
+            }else { // addTask
 
                 dispatch(addTaskAction({
                     userId: user.userId,
@@ -43,15 +43,12 @@ const Modal = () => {
                 
             }
 
-        } else {
-            console.log("error");
         }
 
         event.preventDefault();
 
     }
 
-    // captura lo que se escribe en los input
     const handleChange = (event) => {
 
         const { name, value } = event.target;
@@ -97,10 +94,15 @@ const Modal = () => {
                                     
                         </div>
                         <div className="modal-footer">
+
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
-                                { task._id === "" || task._id === undefined ? <>Add Task</> : <>Updata Task</> }
-                            </button>
+                            
+                            { task.title !== "" && task.description !== "" &&
+                                <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">
+                                    { task._id === "" || task._id === undefined ? <>Add Task</> : <>Updata Task</> }
+                                </button> 
+                            }
+
                         </div>
 
                     </form>

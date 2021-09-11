@@ -7,9 +7,9 @@ import { deleteAllTasksAction } from '../redux/actions/Actions';
 
 export const useTasks = () => {
 
-    const user = useSelector((state) => state.user); // 'user' viene de reducers/index.js
+    const user = useSelector((state) => state.user); // see reducers/index.js
 
-    const tasks = useSelector((state) => state.tasks); // 'tasks' viene de reducers/index.js
+    const tasks = useSelector((state) => state.tasks); // see reducers/index.js
 
     const dispatch = useDispatch();
 

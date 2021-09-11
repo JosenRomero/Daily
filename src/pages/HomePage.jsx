@@ -24,9 +24,9 @@ const HomePage = () => {
 
                         <div className="pt-2 mb-5 text-center text-lg-start">
 
-                            <h1><span className="fw-light">Have a look </span>Around!</h1>
+                            <h1><span className="fw-light">Daily </span>App!</h1>
 
-                            <p className="h4">And you will find everything you need to build a great looking website.</p>
+                            <p className="h4">If you need to remember anything. This website will help you.</p>
 
                             <Link to="/tasks" className="btn btn-primary m-3">
                                 <i className="bi bi-card-text"></i>
@@ -89,7 +89,6 @@ const HomePage = () => {
                                 </div> 
                         }
                         
-
                     </div>
 
                 </div>

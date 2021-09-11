@@ -26,15 +26,13 @@ const SectionMain = () => {
 
     const editTask = async (id) => {
 
-        // petición al servidor para obtener una tarea.
-        // en el method handleSubmit se actualiza está tarea
+        // In the handleSubmit method from Modal.jsx, this task is updated
 
         const { oneTask, msgError } = await getOneTask(id);
 
         if(!msgError) {
 
-            // solo en este caso, cuando se está editando una tarea, el estado de la aplicación tendrá lleno el _id
-            
+            // changed the value of tasks._id from '' to oneTask._id
             currentTask({
                 title: oneTask.title,
                 description: oneTask.description,
