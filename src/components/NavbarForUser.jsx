@@ -31,7 +31,7 @@ const NavbarForUser = (props) => {
                 
                 <li><hr className="dropdown-divider" /></li>
 
-                <li><a href={`${process.env.REACT_APP_API_URL}/auth/logout`} className="dropdown-item">Sign out</a></li>
+                <li><a href={`${import.meta.env.VITE_APP_API_URL}/auth/logout`} className="dropdown-item">Sign out</a></li>
 
             </ul>
 

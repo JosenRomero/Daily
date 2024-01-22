@@ -36,7 +36,7 @@ $ npm start
 Create .env.development.local file and add the following:
 
 ```
-REACT_APP_API_URL=http://localhost:3001
+VITE_APP_API_URL=http://localhost:3001
 ```
 
 #### Build

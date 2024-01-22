@@ -1,7 +1,7 @@
 
 export const getUser = () => {
 
-    return fetch(`${process.env.REACT_APP_API_URL}/auth/login/success`, {
+    return fetch(`${import.meta.env.VITE_APP_API_URL}/auth/login/success`, {
         method: "GET",
         credentials: "include",
         headers: {

@@ -1,15 +1,15 @@
 
-import { Redirect, Route }  from 'react-router-dom';
+import { Navigate }  from 'react-router-dom';
 
 import { useUser } from '../hooks/useUser';
 
-const PrivateRoute = (props) => {
+const PrivateRoute = ({ children }) => {
 
     const { authorized } = useUser();
 
-    if(authorized === false) return <Redirect to="/signin" />
-    
-    if(authorized) return <Route {...props}/>
+    if(authorized === false) return <Navigate to="/signin" />
+
+    if(authorized) return children
 
     return (
         <div className="container text-center py-5">

@@ -1,14 +1,14 @@
 
 export const getAllTasks = (userId) => {
 
-    return fetch(`${process.env.REACT_APP_API_URL}/api/task/all/userId/${userId}`)
+    return fetch(`${import.meta.env.VITE_APP_API_URL}/api/task/all/userId/${userId}`)
         .then(res => res.json())
 
 }
 
 export const addTask = (state) => {
 
-    return fetch(`${process.env.REACT_APP_API_URL}/api/task`, {
+    return fetch(`${import.meta.env.VITE_APP_API_URL}/api/task`, {
         method: 'POST',
         body: JSON.stringify(state),
         headers: {
@@ -22,7 +22,7 @@ export const addTask = (state) => {
 
 export const updateTask = (state) => {
 
-    return fetch(`${process.env.REACT_APP_API_URL}/api/task/${state._id}`, {
+    return fetch(`${import.meta.env.VITE_APP_API_URL}/api/task/${state._id}`, {
         method: 'PUT',
         body: JSON.stringify(state),
         headers: {
@@ -36,7 +36,7 @@ export const updateTask = (state) => {
 
 export const deleteTask = (id) => {
 
-    return fetch(`${process.env.REACT_APP_API_URL}/api/task/${id}`, {
+    return fetch(`${import.meta.env.VITE_APP_API_URL}/api/task/${id}`, {
         method: 'DELETE',
         headers: {
             "Accept": "application/json",
@@ -49,14 +49,14 @@ export const deleteTask = (id) => {
 
 export const getOneTask = (id) => {
 
-    return fetch(`${process.env.REACT_APP_API_URL}/api/task/${id}`)
+    return fetch(`${import.meta.env.VITE_APP_API_URL}/api/task/${id}`)
         .then(res => res.json())
 
 }
 
 export const deleteAllTasks = (userId) => {
 
-    return fetch(`${process.env.REACT_APP_API_URL}/api/task/all/userId/${userId}`, {
+    return fetch(`${import.meta.env.VITE_APP_API_URL}/api/task/all/userId/${userId}`, {
         method: 'DELETE',
         headers: {
             "Accept": "application/json",

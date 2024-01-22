@@ -14,14 +14,14 @@ const SignInPage = () => {
                     <p className="text-muted">Sign Up with your social media account</p>
                     
                     <div className="my-3">
-                        <a href={`${process.env.REACT_APP_API_URL}/auth/facebook`} className="btn btn-primary">
+                        <a href={`${import.meta.env.VITE_APP_API_URL}/auth/facebook`} className="btn btn-primary">
                             <i className="bi bi-facebook me-3"></i> 
                             Sign Up with Facebook
                         </a>
                     </div>
 
                     <div className="my-3">
-                        <a href={`${process.env.REACT_APP_API_URL}/auth/google`} className="btn btn-danger">
+                        <a href={`${import.meta.env.VITE_APP_API_URL}/auth/google`} className="btn btn-danger">
                             <i className="bi bi-google me-3"></i>
                             Sign Up with Google
                         </a>

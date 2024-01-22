@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch }  from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes }  from 'react-router-dom';
 
 import Layout from '../components/layouts/Layout';
 
@@ -15,15 +15,16 @@ const AppRouter = () => {
     return (
         <Router>
             <Layout>
-                <Switch>
+                <Routes>
 
-                    <PrivateRoute exact path="/" component={HomePage} />
-                    <PrivateRoute exact path="/tasks" component={TasksPage} />
-                    <PublicRoute exact path="/signin" component={SignInPage} />
+                    <Route path="/">
+                        <Route index element={<PrivateRoute><HomePage /></PrivateRoute>} />
+                        <Route path="/tasks" element={ <PrivateRoute><TasksPage /></PrivateRoute>} />
+                        <Route path="/signin" element={ <PublicRoute><SignInPage /></PublicRoute>} />
+                        <Route path="*" element={ <NotFoundPage />} />
+                    </Route>
 
-                    <Route path="*" component={NotFoundPage} />
-                    
-                </Switch>
+                </Routes>
             </Layout>
         </Router>
     );
