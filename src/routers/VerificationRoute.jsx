@@ -3,13 +3,19 @@ import { Navigate }  from 'react-router-dom';
 
 import { useUser } from '../hooks/useUser';
 
-const PrivateRoute = ({ children }) => {
+const VerificationRoute = ({ children, requiredUser }) => {
 
     const { authorized } = useUser();
 
-    if(authorized === false) return <Navigate to="/signin" />
+    if(authorized === false) {
+        if(requiredUser) return <Navigate to="/signin" />
+        else return children
+    }
 
-    if(authorized) return children
+    if(authorized) {
+        if(requiredUser) return children
+        else return <Navigate to="/" />
+    }
 
     return (
         <div className="container text-center py-5">
@@ -31,4 +37,4 @@ const PrivateRoute = ({ children }) => {
 
 }
 
-export default PrivateRoute;
+export default VerificationRoute;

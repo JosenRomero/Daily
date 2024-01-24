@@ -6,9 +6,7 @@ import HomePage from '../pages/HomePage';
 import SignInPage from '../pages/SignInPage';
 import TasksPage from '../pages/TasksPage';
 import NotFoundPage from '../pages/NotFoundPage';
-
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+import VerificationRoute from './VerificationRoute';
 
 const AppRouter = () => {
 
@@ -16,14 +14,10 @@ const AppRouter = () => {
         <Router>
             <Layout>
                 <Routes>
-
-                    <Route path="/">
-                        <Route index element={<PrivateRoute><HomePage /></PrivateRoute>} />
-                        <Route path="/tasks" element={ <PrivateRoute><TasksPage /></PrivateRoute>} />
-                        <Route path="/signin" element={ <PublicRoute><SignInPage /></PublicRoute>} />
-                        <Route path="*" element={ <NotFoundPage />} />
-                    </Route>
-
+                    <Route path='/' element={ <VerificationRoute requiredUser={true}><HomePage /></VerificationRoute> } />
+                    <Route path="/tasks" element={ <VerificationRoute requiredUser={true}><TasksPage /></VerificationRoute>} />
+                    <Route path="/signin" element={ <VerificationRoute requiredUser={false}><SignInPage /></VerificationRoute>} />
+                    <Route path="*" element={ <NotFoundPage />} />
                 </Routes>
             </Layout>
         </Router>
