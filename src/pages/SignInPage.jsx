@@ -2,6 +2,10 @@ import React from 'react';
 
 const SignInPage = () => {
 
+    const handleSignIn = (name) => {
+        window.open(`${import.meta.env.VITE_APP_API_URL}/${name}`, "_self")
+    }
+
     return(
         <div className="container text-center py-5">
 
@@ -14,17 +18,17 @@ const SignInPage = () => {
                     <p className="text-muted">Sign Up with your social media account</p>
                     
                     <div className="my-3">
-                        <a href={`${import.meta.env.VITE_APP_API_URL}/auth/facebook`} className="btn btn-primary">
+                        <button onClick={ () => handleSignIn('auth/facebook')} className="btn btn-primary">
                             <i className="bi bi-facebook me-3"></i> 
                             Sign Up with Facebook
-                        </a>
+                        </button>
                     </div>
 
                     <div className="my-3">
-                        <a href={`${import.meta.env.VITE_APP_API_URL}/auth/google`} className="btn btn-danger">
+                        <button onClick={ () => handleSignIn('auth/google') } className="btn btn-danger">
                             <i className="bi bi-google me-3"></i>
                             Sign Up with Google
-                        </a>
+                        </button>
                     </div>
 
                 </div>
