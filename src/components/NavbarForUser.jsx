@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import { useTasks } from '../hooks/useTasks';
 import { useCurrentTask } from '../hooks/useCurrentTask';
 
+import { useUser } from '../hooks/useUser'
+
 const NavbarForUser = (props) => {
+
+    const { userLogout } = useUser();
 
     const { removeAllTasks } = useTasks();
 
@@ -31,7 +35,7 @@ const NavbarForUser = (props) => {
                 
                 <li><hr className="dropdown-divider" /></li>
 
-                <li><a href={`${import.meta.env.VITE_APP_API_URL}/auth/logout`} className="dropdown-item">Sign out</a></li>
+                <li><button onClick={ () => userLogout() } className="dropdown-item">Sign out</button></li>
 
             </ul>
 

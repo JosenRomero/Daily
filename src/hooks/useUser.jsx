@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 
-import { getUser } from '../services/user';
+import { getUser, logout } from '../services/user';
 
 import { addingUserAction } from '../redux/actions/Actions';
 
@@ -10,6 +11,8 @@ export const useUser = () => {
     const user = useSelector((state) => state.user); // see reducers/index.js
 
     const [authorized, setAuthorized] = useState(null);
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -48,8 +51,19 @@ export const useUser = () => {
 
     }
 
+    const userLogout = () => {
+
+        logout()
+            .then(_ => {
+                navigate(0); // refresh page
+            })
+            .catch(err => console.error(err))
+            
+    }
+
     return {
-        authorized
+        authorized,
+        userLogout
     }
 
 }
