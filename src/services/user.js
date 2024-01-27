@@ -6,8 +6,7 @@ export const getUser = () => {
         credentials: "include",
         headers: {
             Accept: "Application/json",
-            "Content-Type": "Application/json",
-            "Access-Control-Allow-Credentials": true
+            "Content-Type": "Application/json"
         }
     }).then(response => response.json() )
 
@@ -20,8 +19,7 @@ export const logout = () => {
         credentials: "include",
         headers: {
             Accept: "Application/json",
-            "Content-Type": "Application/json",
-            "Access-Control-Allow-Credentials": true
+            "Content-Type": "Application/json"
         }
     }).then(response => response.json() )
 
